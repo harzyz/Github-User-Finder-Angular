@@ -1,0 +1,107 @@
+<div
+  class="container mt-5 text-[#DCEFFE] mx-0 mb-4 sm:flex sm:gap-4 md:w-[80%] lg:w-[70%] xl:w-[60%]"
+>
+  <div *ngIf="!loading" class="sm:w-[50%] sm:pr-4">
+    <div
+      class="custom-fit-content border border-2 border-[#EEEEEE] rounded-[50%] mb-4 sm:mb-0"
+    >
+      <div class="h-[150px] w-[150px] m-[2px] rounded-[50%] bg-[#EEEEEE]">
+        <img class="rounded-[50%] w-full" [src]="user.avatar_url" alt="" />
+      </div>
+    </div>
+    <i class="fas fa-link"></i>
+    <a [attr.href]="'https://github.com/' + username" target="_blank">
+      https://github.com/{{ username }}
+    </a>
+  </div>
+
+  <!-- <ng-template #skeletonContent>
+    <div class="border border-2 border-[#EEEEEE] rounded-[50%] mb-4 sm:mb-0">
+      <div class="h-[150px] w-[150px] m-[2px] rounded-[50%] bg-[#EEEEEE]">
+        <ngx-skeleton-loader
+          class="h-[150px] bg-[#0C2233] w-[150px] m-[2px] rounded-[50%] bg-[#EEEEEE]"
+          count="1"
+        ></ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="font-[400] text-3xl">
+      <ngx-skeleton-loader
+        class="bg-[#0C2233]"
+        count="1"
+        appearance="line"
+      ></ngx-skeleton-loader>
+    </div>
+    <div>
+      <ngx-skeleton-loader
+        class="bg-[#0C2233]"
+        count="1"
+        appearance="line"
+      ></ngx-skeleton-loader>
+    </div>
+    <div>
+      <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+    </div>
+    <a href="#">
+      <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+    </a>
+  </ng-template> -->
+
+  <div *ngIf="!loading" class="sm:w-[50%] sm:pl-4">
+    <div class="font-[400] text-3xl">{{ user.name }}</div>
+    <div>{{ user.bio }}</div>
+    <div class="flex gap-[3px] items-center">
+      <i class="fas fa-map-marker-alt"></i>
+      <div>{{ user.location }}</div>
+    </div>
+    <a
+      [attr.href]="'https://twitter.com/' + user.twitter_username"
+      target="_blank"
+    >
+      https://twitter.com/{{ user.twitter_username }}
+    </a>
+  </div>
+</div>
+
+<ngx-skeleton-loader
+  count="10"
+  class="bg-[#692F02]"
+  appearance="line"
+  *ngIf="loading"
+></ngx-skeleton-loader>
+
+<div
+  class="text-[#DCEFFE] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 p-4 w-full"
+>
+  <div
+    *ngFor="
+      let film of data.slice((currentPage - 1) * limit, currentPage * limit)
+    "
+    class="border rounded-[8px] border-2 bg-[#692F02] border-[#DCEFFE] p-4"
+  >
+    <div class="font-bold text-2xl text-[#4790CE]">
+      {{ film.name | titlecase }}
+    </div>
+    <div>{{ film.description || "No description" | titlecase }}</div>
+    <div class="flex gap-2">
+      <div *ngFor="let topics of film.topics">
+        <div
+          class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
+        >
+          {{ topics }}
+        </div>
+      </div>
+      <div
+        *ngIf="film.topics.length === 0"
+        class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
+      >
+        Repo has no topic
+      </div>
+    </div>
+  </div>
+</div>
+<app-pagination
+  [currentPage]="currentPage"
+  [limit]="limit"
+  (changePage)="changePage($event)"
+  (changeLimit)="changeLimitHandler($event)"
+></app-pagination>

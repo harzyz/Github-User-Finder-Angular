@@ -1,0 +1,46 @@
+<div class="flex items-center justify-center mb-4">
+  <label for="limit" class="mr-2">Items per page:</label>
+  <select id="limit"
+  class="border rounded-md px-2 py-1"
+  [(ngModel)]="limit"
+  (change)="changeLimitHandler(limit)">
+    <option value="20">20</option>
+    <option value="100">100</option>
+  </select>
+</div>
+
+<ul class="pagination flex items-center justify-center">
+  <li class="page-item">
+    <button
+      href="#"
+      class="page-link border px-4 py-2 rounded-l-md"
+      (click)="previousPage()"
+      [disabled]="currentPage === 1"
+    >
+      Prev
+    </button>
+  </li>
+
+  <ng-container *ngFor="let page of pages">
+    <li
+      class="page-item mx-1"
+      [ngClass]="{ 'active': currentPage === page }"
+      (click)="changePage.emit(page)"
+    >
+      <button class="page-link px-4 py-2 rounded-md" [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+    </li>
+  </ng-container>
+
+  <li class="page-item">
+    <button
+      href="#"
+      class="page-link border px-4 py-2 rounded-r-md"
+      (click)="nextPage()"
+      [disabled]="currentPage === pages.length"
+    >
+      Next
+    </button>
+  </li>
+</ul>

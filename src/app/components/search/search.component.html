@@ -1,0 +1,32 @@
+<div class="flex w-full items-center">
+  <form (ngSubmit)="search($event)">
+    <input
+    type="text"
+    class="py-2 px-4 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500"
+    placeholder="Github username"
+    [(ngModel)]="username"
+    name="username"
+  />
+  <button
+    class="py-3 px-4 bg-[#191700] text-white rounded-r-md hover:bg-[#692f02] focus:outline-none"
+    type="submit"
+  >
+    Search
+  </button>
+  </form>
+  <!-- <ngx-skeleton-loader count="10" appearance="line" *ngIf="isLoading"></ngx-skeleton-loader>
+  <div class="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
+    <div *ngIf="used && used.length === 0">
+    <p>No results found.</p>
+  </div> -->
+
+    <!-- <div *ngFor="let user of used" class="flex">
+        <div>
+          <img src={{user.avatar_url}} alt="">
+        </div>
+        <div>
+          <h3>{{user.login}}</h3>
+        </div>
+    </div> -->
+  <!-- </div> -->
+</div>

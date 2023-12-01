@@ -1,3 +1,8 @@
+@import 'ngx-toastr/toastr';
+@import '@fortawesome/fontawesome-free/css/all.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body, html, #app-root {
+  margin: 0;
+}
