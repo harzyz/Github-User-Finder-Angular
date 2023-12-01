@@ -70,7 +70,7 @@
 ></ngx-skeleton-loader>
 
 <div
-  class="text-[#DCEFFE] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 p-4 w-full"
+  class="text-[#DCEFFE] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 p-2 xl:p-4 w-full"
 >
   <div
     *ngFor="
@@ -82,7 +82,7 @@
       {{ film.name | titlecase }}
     </div>
     <div>{{ film.description || "No description" | titlecase }}</div>
-    <div class="flex gap-2">
+    <div class="flex flex-wrap gap-2">
       <div *ngFor="let topics of film.topics">
         <div
           class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"

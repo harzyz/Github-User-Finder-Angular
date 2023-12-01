@@ -1,15 +1,14 @@
-<div class="bg-[#011728] h-[100vh] p-5  overflow-y-scroll">
-  <app-search></app-search>
-  <app-user-results *ngIf="show"></app-user-results>
-  <div *ngIf="!show" class="flex h-[500px] justify-center items-center">
+<div class="bg-[#011728] h-[100vh] p-3 xl:p-5  overflow-y-scroll">
+  <div *ngIf="!show" class="flex h-[250px] justify-center items-center">
     <div class="flex items-center gap-4">
       <div class="font-bold text-[#DCEFFE] text-3xl">
         {{title}}
       </div>
-      
       <i class="fas fa-heart text-[#DCEFFE] text-3xl"></i>
     </div>
   </div>
+  <app-search></app-search>
+  <app-user-results *ngIf="show"></app-user-results>
 
   
 </div>
