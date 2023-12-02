@@ -9,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SearchComponent {
   username:string = ''
-  @Output() searchClicked = new EventEmitter<void>();
   isLoading: boolean = false
 
   constructor(
@@ -19,12 +18,17 @@ export class SearchComponent {
 
   searchProfile(event: Event) {
     if(this.username.trim() === ''){
-      this.toast.error('Fill Search Input')
+      this.toast.warning('Fill Search Input')
     }
     event.preventDefault();
-    this.searchClicked.emit();
+    this.isLoading = true
     this.apiService.setUsername(this.username)
     this.apiService.triggerButtonClick()
+  }
+
+  clearSearch() {
+    this.username = '';
+    this.apiService.triggerClearButton()
   }
 
 }

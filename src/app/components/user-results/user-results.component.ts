@@ -25,6 +25,7 @@ export class UserResultsComponent implements OnInit {
       this.serachUser()
       this.search()
     });
+    this.clearSearch()
   }
   user: any = [];
   data: any = [];
@@ -60,6 +61,14 @@ export class UserResultsComponent implements OnInit {
       this.loading = false;
       console.log(error)
     });
+  }
+
+  clearSearch() {
+    this.apiService.clearClick$.subscribe(() =>{
+      this.data = [];
+      this.user = [];
+      window.location.reload();
+    })
   }
 
   changePage(page: number): void {

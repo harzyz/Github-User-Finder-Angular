@@ -8,9 +8,11 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class ApiService {
   private usernameSubject = new BehaviorSubject<string>('');
   private buttonClickSubject = new Subject<void>();
-  private apiUrl = 'https://api.github.com';  
+  private clearClickSubject = new Subject<void>();
+  // private apiUrl = 'https://api.github.com';  
 
   buttonClick$ = this.buttonClickSubject.asObservable();
+  clearClick$ = this.clearClickSubject.asObservable();
 
   constructor(
     private httpClient: HttpClient
@@ -27,6 +29,10 @@ export class ApiService {
 
   triggerButtonClick() {
     this.buttonClickSubject.next();
+  }
+
+  triggerClearButton() {
+    this.clearClickSubject.next();
   }
 
   getUser(githubUsername: string) {
