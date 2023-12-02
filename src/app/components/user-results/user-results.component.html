@@ -2,6 +2,7 @@
   <div class="flex-custom mt-5 gap-[50px] w-[100%] text-[#DCEFFE]">
     <div *ngIf="!loading" class="flex flex-col items-center gap-[15px]">
       <div
+        *ngIf="!loading"
         class="custom-fit-content border border-2 border-[#EEEEEE] rounded-[50%]"
       >
         <div class="h-[150px] w-[150px] m-[2px] rounded-[50%] bg-[#EEEEEE]">
@@ -17,18 +18,31 @@
     </div>
 
     <div *ngIf="!loading" class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]">
-      <div class="font-[400] text-3xl">{{ user.name }}</div>
-      <div>{{ user.bio }}</div>
+      <div *ngIf="user.name; else noName" class="font-[400] text-3xl">{{ user.name }}</div>
+      <ng-template  #noName>
+        <div class="font-[400] text-3xl">Anonymous User</div>
+      </ng-template>
+      <div *ngIf="user.bio; else noBio">{{ user.bio }}</div>
+      <ng-template #noBio>
+        <div>No Bio</div>
+      </ng-template>
       <div class="flex gap-[3px] items-center">
         <i class="fas fa-map-marker-alt"></i>
-        <div>{{ user.location }}</div>
+        <div *ngIf="user.location; else noLocation">{{ user.location }}</div>
+        <ng-template #noLocation>
+          <div>No Location set</div>
+        </ng-template>
       </div>
       <a
+        *ngIf="user.twitter_username; else noTwitter"
         [attr.href]="'https://twitter.com/' + user.twitter_username"
         target="_blank"
       >
         https://twitter.com/{{ user.twitter_username }}
       </a>
+      <ng-template #noTwitter>
+        <div>No Twitter username</div>
+      </ng-template>
     </div>
 
     
@@ -43,25 +57,27 @@
       "
       class="border rounded-[8px] border-2 border-[#DCEFFE] p-4"
     >
-      <div class="font-bold text-[18px] xl:text-2xl lg:text-2xl text-[#4790CE]">
-        {{ film.name | titlecase }}
-      </div>
-      <div>{{ film.description || "No description" | titlecase }}</div>
-      <div class="flex flex-wrap gap-2">
-        <div *ngFor="let topics of film.topics">
+      <a [attr.href]="'https://github.com/' + username + '/' + film.name " target="_blank">
+        <div class="font-bold text-[18px] xl:text-2xl lg:text-2xl text-[#4790CE]">
+          {{ film.name | titlecase }}
+        </div>
+        <div>{{ film.description || "No description" | titlecase }}</div>
+        <div class="flex flex-wrap gap-2">
+          <div *ngFor="let topics of film.topics">
+            <div
+              class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
+            >
+              {{ topics }}
+            </div>
+          </div>
           <div
+            *ngIf="film.topics.length === 0"
             class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
           >
-            {{ topics }}
+            Repo has no topic
           </div>
         </div>
-        <div
-          *ngIf="film.topics.length === 0"
-          class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
-        >
-          Repo has no topic
-        </div>
-      </div>
+      </a>
     </div>
   </section>
 

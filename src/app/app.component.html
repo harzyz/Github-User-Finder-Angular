@@ -1,12 +1,17 @@
 <div class="bg-[#011728] h-[100vh] p-3 xl:p-5  overflow-y-scroll">
-  <div *ngIf="!show" class="flex h-[250px] xl:h-[250px] lg:h-[250px] md:h-[250px] justify-center items-center">
+  <div *ngIf="!show" class="flex h-[100px] xl:h-[250px] lg:h-[250px] md:h-[250px] justify-center items-center">
     <div class="flex items-center gap-2 xl:gap-4">
-      <div class="font-bold text-[#DCEFFE] text-[22px] xl:text-3xl">
+      <div class="font-bold text-[#DCEFFE] text-[20px] xl:text-3xl lg:text-3xl">
         {{title}}
       </div>
       <i class="fas fa-heart text-[#DCEFFE] text-1xl"></i>
     </div>
   </div>
   <app-search></app-search>
+  <div *ngIf="!show" class="flex h-[200px] xl:h-[250px] lg:h-[250px] md:h-[250px] justify-center items-center">
+    <div class="flex items-center gap-2 xl:gap-4">
+      <div class="text-[#DCEFFE] text-[40px] font-[Ephesis]">Github User finder</div>
+    </div>
+  </div>
   <app-user-results *ngIf="show"></app-user-results> 
 </div>

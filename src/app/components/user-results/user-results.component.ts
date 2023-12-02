@@ -42,7 +42,7 @@ export class UserResultsComponent implements OnInit {
         this.loading = false;
       },
       (error) => {
-        this.loading = false;
+        this.loading = true;
         this.toastr.error('User not found')
         console.log(error)
       }

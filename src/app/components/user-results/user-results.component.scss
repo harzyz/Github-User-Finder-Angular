@@ -16,6 +16,9 @@
     background-color: hsl(206, 62%, 24%);
   }
 }
+.skeleton-mobile{
+  display: none;
+}
 @media screen and (max-width: 400px) {
   .flex-custom{
     flex-direction: column;

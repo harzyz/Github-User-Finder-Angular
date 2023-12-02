@@ -1,8 +1,12 @@
 @import 'ngx-toastr/toastr';
 @import '@fortawesome/fontawesome-free/css/all.css';
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 body, html, #app-root {
   margin: 0;
+}
+body{
+  font-family: 'Poppins';
 }
