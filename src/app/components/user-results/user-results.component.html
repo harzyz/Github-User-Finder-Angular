@@ -17,9 +17,14 @@
       </div>
     </div>
 
-    <div *ngIf="!loading" class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]">
-      <div *ngIf="user.name; else noName" class="font-[400] text-3xl">{{ user.name }}</div>
-      <ng-template  #noName>
+    <div
+      *ngIf="!loading"
+      class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]"
+    >
+      <div *ngIf="user.name; else noName" class="font-[400] text-3xl">
+        {{ user.name }}
+      </div>
+      <ng-template #noName>
         <div class="font-[400] text-3xl">Anonymous User</div>
       </ng-template>
       <div *ngIf="user.bio; else noBio">{{ user.bio }}</div>
@@ -44,8 +49,6 @@
         <div>No Twitter username</div>
       </ng-template>
     </div>
-
-    
   </div>
 
   <section
@@ -57,8 +60,13 @@
       "
       class="border rounded-[8px] border-2 border-[#DCEFFE] p-4"
     >
-      <a [attr.href]="'https://github.com/' + username + '/' + film.name " target="_blank">
-        <div class="font-bold text-[18px] xl:text-2xl lg:text-2xl text-[#4790CE]">
+      <a
+        [attr.href]="'https://github.com/' + username + '/' + film.name"
+        target="_blank"
+      >
+        <div
+          class="font-bold text-[18px] xl:text-2xl lg:text-2xl text-[#4790CE]"
+        >
           {{ film.name | titlecase }}
         </div>
         <div>{{ film.description || "No description" | titlecase }}</div>
@@ -81,7 +89,10 @@
     </div>
   </section>
 
-  <div class="w-[100%] text-3xl text-[#DCEFFE] flex flex-col items-center " *ngIf="!loading && data.length === 0">
+  <div
+    class="w-[100%] text-3xl text-[#DCEFFE] flex flex-col items-center"
+    *ngIf="!loading && data.length === 0"
+  >
     User Has no Repos
   </div>
   <app-pagination
@@ -94,7 +105,7 @@
 
   <div *ngIf="loading" class="flex flex-col gap-4">
     <div class="flex-custom gap-4">
-      <div  class="flex flex-col items-center gap-[15px]">
+      <div class="flex flex-col items-center gap-[15px]">
         <div
           class="custom-fit-content border skeleton border-2 border-[#EEEEEE] rounded-[50%]"
         >
@@ -103,7 +114,9 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]">
+      <div
+        class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]"
+      >
         <div class="w-[600px] rounded-md h-[60px] skeleton"></div>
         <div class="w-[600px] rounded-md h-[30px] skeleton"></div>
       </div>
@@ -115,16 +128,20 @@
 
   <div *ngIf="loading" class="flex flex-col gap-4">
     <div class="flex-custom gap-4">
-      <div  class="flex flex-col items-center gap-[15px]">
+      <div class="flex flex-col items-center gap-[15px]">
         <div
           class="custom-fit-content border skeleton-mobile border-2 border-[#EEEEEE] rounded-[50%]"
         >
-          <div class="h-[150px] w-[150px] skeleton-mobile m-[2px] rounded-[50%]">
+          <div
+            class="h-[150px] w-[150px] skeleton-mobile m-[2px] rounded-[50%]"
+          >
             <div class="rounded-[50%] skeleton-mobile w-full"></div>
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]">
+      <div
+        class="flex flex-col items-center lg:items-start xl:items-start gap-[10px]"
+      >
         <div class="w-[300px] rounded-md h-[60px] skeleton-mobile"></div>
         <div class="w-[300px] rounded-md h-[30px] skeleton-mobile"></div>
       </div>
