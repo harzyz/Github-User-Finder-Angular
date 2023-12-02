@@ -24,10 +24,8 @@ export class PaginationComponent {
   ngOnInit() {
     this.apiService.getUsername().subscribe((res) => {
       this.username = res
-    });
-    this.apiService.buttonClick$.subscribe(() => {
       this.page()
-    })
+    });
   }
 
   page() {

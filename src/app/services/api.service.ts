@@ -29,23 +29,6 @@ export class ApiService {
     this.buttonClickSubject.next();
   }
 
-
-  searchUsers(username: string) {
-    if (!username.trim()) {
-      // If the username is empty, return an empty observable or handle it appropriately
-     console.log('object');
-    }
-
-    const params = new HttpParams().set('q', username);
-    const url = `${this.apiUrl}/search/users`;
-
-    return this.httpClient.get(url, { params });
-  }
-  // searchUsers(username: string): Observable<any> {
-  //   const url = `https://api.github.com/search/users?q=${username}`;
-  //   return this.httpClient.get(url);
-  // }
-  
   getUser(githubUsername: string) {
     return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -56,10 +56,8 @@ export class UserResultsComponent implements OnInit {
     return this.apiService.getRepos(this.username).subscribe((res) =>{
       this.data = res
       this.loading = false
-      // console.log(this.data)
     },(error) => {
       this.loading = false;
-      // this.toastr.error('User not found')
       console.log(error)
     });
   }

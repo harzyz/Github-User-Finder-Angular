@@ -17,30 +17,14 @@ export class SearchComponent {
     private toast: ToastrService
   ) {}
 
-  search(event: Event) {
+  searchProfile(event: Event) {
     if(this.username.trim() === ''){
       this.toast.error('Fill Search Input')
     }
     event.preventDefault();
     this.searchClicked.emit();
-    this.showResults()
     this.apiService.setUsername(this.username)
     this.apiService.triggerButtonClick()
-  }
-
-  users: any =[]
-  used: any
-  showResults(){
-    this.isLoading = true;
-    this.apiService.searchUsers(this.username).subscribe((res) =>{
-      this.users = res || {}
-      this.used = this.users.items || []
-      console.log(this.users.items, 'item')
-    },(error) =>{
-      console.log('gettingData', error)
-      this.toast.error('Error in request')
-      this.isLoading = false;
-    })
   }
 
 }

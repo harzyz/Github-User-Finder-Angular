@@ -1,3 +1,37 @@
 .custom-fit-content{
   width: fit-content;
 }
+.flex-custom{
+  display: flex;
+  align-items: center;
+}
+.skeleton{
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+@keyframes skeleton-loading {
+  0%{
+    background-color: hsl(206, 62%, 24%);
+  }
+  100%{
+    background-color: hsl(206, 62%, 24%);
+  }
+}
+@media screen and (max-width: 400px) {
+  .flex-custom{
+    flex-direction: column;
+  }
+  .skeleton{
+    display: none;
+  }
+  .skeleton-mobile{
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  @keyframes skeleton-loading {
+    0%{
+      background-color: hsl(206, 62%, 24%);
+    }
+    100%{
+      background-color: hsl(206, 62%, 24%);
+    }
+  }
+}
