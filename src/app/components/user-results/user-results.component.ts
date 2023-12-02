@@ -8,11 +8,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./user-results.component.scss']
 })
 export class UserResultsComponent implements OnInit {
-  username:any = ''
-  loading = false
+  username: any = '';
+  loading = false;
   currentPage = 1;
   popUpIndex = -1;
-  limit = 10
+  limit = 10;
+  user: any = [];
+  data: any = [];
 
   constructor(
     private apiService: ApiService,
@@ -21,46 +23,42 @@ export class UserResultsComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getUsername().subscribe((res) => {
-      this.username = res
-      this.serachUser()
-      this.search()
+      this.username = res;
+      this.search();
+      this.clearSearch()
     });
-    this.clearSearch()
   }
-  user: any = [];
-  data: any = [];
-
-
-  serachUser() {
-    if(this.username.trim() === ''){
-      this.toastr.warning('Input Github Username')
-    }else{
-    this.loading = true;
-  
-    this.apiService.getUser(this.username).subscribe(
-      (res) => {
-        this.user = res;
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = true;
-        this.toastr.error('User not found')
-        console.log(error)
-      }
-    );
-    }
-  }
-  
 
   search() {
-    this.loading = true
-    return this.apiService.getRepos(this.username).subscribe((res) =>{
-      this.data = res
-      this.loading = false
-    },(error) => {
-      this.loading = false;
-      console.log(error)
-    });
+    if (this.username.trim() === '') {
+      this.toastr.warning('Input Github Username');
+      return;
+    }
+
+    this.loading = true;
+
+    this.apiService.getUser(this.username).subscribe(
+      (userRes) => {
+        this.user = userRes;
+        this.loading = false;
+      },
+      (userError) => {
+        this.loading = false;
+        this.toastr.error('User not found');
+        console.log(userError);
+      }
+    );
+
+    this.apiService.getRepos(this.username).subscribe(
+      (reposRes) => {
+        this.data = reposRes;
+        this.loading = false;
+      },
+      (reposError) => {
+        this.loading = false;
+        console.log(reposError);
+      }
+    );
   }
 
   clearSearch() {
@@ -74,10 +72,10 @@ export class UserResultsComponent implements OnInit {
   changePage(page: number): void {
     this.currentPage = page;
   }
-  
+
   changeLimitHandler(newLimit: number): void {
     this.limit = newLimit;
     this.search();
   }
-  
 }
+

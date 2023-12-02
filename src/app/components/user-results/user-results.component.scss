@@ -27,6 +27,7 @@
     display: none;
   }
   .skeleton-mobile{
+    display: block;
     animation: skeleton-loading 1s linear infinite alternate;
   }
   @keyframes skeleton-loading {

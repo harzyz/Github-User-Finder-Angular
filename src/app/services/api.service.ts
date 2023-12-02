@@ -8,8 +8,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class ApiService {
   private usernameSubject = new BehaviorSubject<string>('');
   private buttonClickSubject = new Subject<void>();
-  private clearClickSubject = new Subject<void>();
-  // private apiUrl = 'https://api.github.com';  
+  private clearClickSubject = new Subject<void>();  
 
   buttonClick$ = this.buttonClickSubject.asObservable();
   clearClick$ = this.clearClickSubject.asObservable();
