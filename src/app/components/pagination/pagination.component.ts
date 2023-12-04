@@ -29,7 +29,7 @@ export class PaginationComponent {
   }
 
   page() {
-    this.apiService.getRepos(this.username).subscribe((result) => {
+    this.apiService.getRepos(this.username, this.limit, this.currentPage).subscribe((result) => {
       this.total = result;
   
       // Calculate pages based on the total and current limit

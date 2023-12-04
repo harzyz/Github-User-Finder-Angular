@@ -54,39 +54,39 @@
   <section
     class="text-[#DCEFFE] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-2 xl:p-4 w-full"
   >
-    <div
-      *ngFor="
-        let film of data.slice((currentPage - 1) * limit, currentPage * limit)
-      "
-      class="border rounded-[8px] border-2 border-[#DCEFFE] p-4"
-    >
-      <a
-        [attr.href]="'https://github.com/' + username + '/' + film.name"
-        target="_blank"
+      <div
+        *ngFor="
+          let film of data
+        "
+        class="border rounded-[8px] border-2 border-[#DCEFFE] p-4"
       >
-        <div
-          class="font-bold text-[18px] xl:text-2xl lg:text-2xl text-[#4790CE]"
+        <a
+          [attr.href]="'https://github.com/' + username + '/' + film.name"
+          target="_blank"
         >
-          {{ film.name | titlecase }}
-        </div>
-        <div>{{ film.description || "No description" | titlecase }}</div>
-        <div class="flex flex-wrap gap-2">
-          <div *ngFor="let topics of film.topics">
+          <div
+            class="font-bold text-[18px] xl:text-2xl lg:text-2xl text-[#4790CE]"
+          >
+            {{ film.name | titlecase }}
+          </div>
+          <div>{{ film.description || "No description" | titlecase }}</div>
+          <div class="flex flex-wrap gap-2">
+            <div *ngFor="let topics of film.topics">
+              <div
+                class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
+              >
+                {{ topics }}
+              </div>
+            </div>
             <div
+              *ngIf="film.topics.length === 0"
               class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
             >
-              {{ topics }}
+              Repo has no topic
             </div>
           </div>
-          <div
-            *ngIf="film.topics.length === 0"
-            class="bg-blue-500 text-[12px] custom-fit-content text-white p-2 rounded-md mt-1"
-          >
-            Repo has no topic
-          </div>
-        </div>
-      </a>
-    </div>
+        </a>
+      </div>
   </section>
 
   <div
@@ -151,3 +151,5 @@
     <div class="w-[200px] rounded-md h-[50px] mt-3 skeleton-mobile"></div>
   </div>
 </main>
+
+<!-- .slice((currentPage - 1) * limit, currentPage * limit) -->

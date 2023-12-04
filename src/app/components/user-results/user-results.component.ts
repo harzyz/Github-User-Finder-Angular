@@ -49,7 +49,7 @@ export class UserResultsComponent implements OnInit {
       }
     );
 
-    this.apiService.getRepos(this.username).subscribe(
+    this.apiService.getRepos(this.username, this.limit, this.data.length).subscribe(
       (reposRes) => {
         this.data = reposRes;
         this.loading = false;
