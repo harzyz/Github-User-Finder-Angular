@@ -8,7 +8,7 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'Fyle Internship Challenge'
+  title = 'Github User finder'
   show: boolean = false
   username: string = ''
 
