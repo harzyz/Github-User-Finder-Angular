@@ -29,23 +29,24 @@ export class PaginationComponent {
   }
 
   page() {
-    this.apiService.getRepos(this.username, this.limit, this.currentPage).subscribe((result) => {
+    this.apiService.getPages(this.username).subscribe((result) => {
       this.total = result;
   
       // Calculate pages based on the total and current limit
       const pagesCount = Math.ceil(this.total.length / this.limit);
       this.pages = this.range(1, pagesCount);
+      // console.log(this.pages[0])
   
       // Adjust current page if needed
-      if (this.currentPage > this.pages.length) {
-        this.currentPage = this.pages.length;
-        this.changePage.emit(this.currentPage);
-      }
+      // if (this.currentPage > this.pages.length) {
+      //   this.currentPage = this.pages.length;
+      //   this.changePage.emit(this.currentPage);
+      // }
   
       // Calculate indices based on the current page and limit
-      const indexofLastItem = this.currentPage * this.limit;
-      const indexofFirstItem = indexofLastItem - this.limit;
-      const currentItems = this.total.slice(indexofFirstItem, indexofLastItem);
+      // const indexofLastItem = this.currentPage * this.limit;
+      // const indexofFirstItem = indexofLastItem - this.limit;
+      // const currentItems = this.total.slice(indexofFirstItem, indexofLastItem);
     });
   }
   

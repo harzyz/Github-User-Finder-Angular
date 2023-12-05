@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-results',
   templateUrl: './user-results.component.html',
-  styleUrls: ['./user-results.component.scss']
+  styleUrls: ['./user-results.component.scss'],
 })
 export class UserResultsComponent implements OnInit {
   username: any = '';
@@ -16,20 +16,19 @@ export class UserResultsComponent implements OnInit {
   user: any = [];
   data: any = [];
 
-  constructor(
-    private apiService: ApiService,
-    private toastr: ToastrService
-  ) {}
+  constructor(private apiService: ApiService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.apiService.getUsername().subscribe((res) => {
       this.username = res;
       this.search();
-      this.clearSearch()
+      this.changePage(this.currentPage);
     });
   }
 
   search() {
+    this.data = [];
+    this.user = [];
     if (this.username.trim() === '') {
       this.toastr.warning('Input Github Username');
       return;
@@ -49,28 +48,23 @@ export class UserResultsComponent implements OnInit {
       }
     );
 
-    this.apiService.getRepos(this.username, this.limit, this.data.length).subscribe(
-      (reposRes) => {
-        this.data = reposRes;
-        this.loading = false;
-      },
-      (reposError) => {
-        this.loading = false;
-        console.log(reposError);
-      }
-    );
-  }
-
-  clearSearch() {
-    this.apiService.clearClick$.subscribe(() =>{
-      this.data = [];
-      this.user = [];
-      window.location.reload();
-    })
+    this.apiService
+      .getRepos(this.username, this.limit, this.currentPage)
+      .subscribe(
+        (reposRes) => {
+          this.data = reposRes;
+          this.loading = false;
+        },
+        (reposError) => {
+          this.loading = false;
+          console.log(reposError);
+        }
+      );
   }
 
   changePage(page: number): void {
     this.currentPage = page;
+    this.search();
   }
 
   changeLimitHandler(newLimit: number): void {
@@ -78,4 +72,3 @@ export class UserResultsComponent implements OnInit {
     this.search();
   }
 }
-
